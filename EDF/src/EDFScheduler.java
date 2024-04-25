@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import enums.TaskStats;
@@ -13,13 +14,13 @@ public class EDFScheduler {
         if(!isPossible(tasks))
             throw new NotEscalableException();
 
-
+        int hyperperiod = this.calculateHyperperiod(tasks);
         List<String> eventLog = new ArrayList<>();
         List<Task> readyTasks = new ArrayList<>();
         Task prevTask = null;
         this.currentTime = 0;
 
-        while (!tasks.isEmpty()) {
+        while (currentTime <= hyperperiod) {
 
             // Seleciona as tarefas com base no tempo de chegada 
             readyTasks = inQueue(tasks, readyTasks); 
@@ -33,7 +34,7 @@ public class EDFScheduler {
             }
             
             // Busca a tarefa a ser executada seguindo as especificações do EDF
-            Task selectedTask = toExecute(readyTasks);
+            Task selectedTask = toExecute(readyTasks, currentTime);
 
             // Verifica se ouve preempção e grava o log
             wasPreempted(prevTask, selectedTask, eventLog);
@@ -44,7 +45,10 @@ public class EDFScheduler {
             if (isTaskCompleted(selectedTask)){
                 selectedTask.STATS = TaskStats.COMPLETED;
                 eventLog.add("\t Task: " + selectedTask.name + ", Stats: " + selectedTask.STATS.getStats());
-                tasks.remove(selectedTask);
+                selectedTask.periodInitialTime += selectedTask.period;
+                selectedTask.remainingTime = selectedTask.executionTime;
+                selectedTask.deadline += selectedTask.initialDeadline;
+                
             }
 
             // Guarda qual foi a última tarefa executando
@@ -61,7 +65,7 @@ public class EDFScheduler {
 
     private List<Task> inQueue(List<Task> tasks, List<Task> queue) {
         for (Task task : tasks) {
-            if (task.arrivalTime <= this.currentTime) {
+            if (task.periodInitialTime <= this.currentTime) {
                 queue.add(task);
                 task.STATS = TaskStats.READY;
             }
@@ -74,11 +78,11 @@ public class EDFScheduler {
         queue.clear();
     }
 
-    private Task toExecute(List<Task> readyTasks){
+    private Task toExecute(List<Task> readyTasks, int currentTime){
         Task selectedTask = readyTasks.get(0);
 
         for (Task task : readyTasks) {
-            if (task.deadline < selectedTask.deadline) {
+            if (task.deadline < selectedTask.deadline && currentTime >= task.periodInitialTime) {
                 selectedTask = task;    
             }
         }
@@ -119,4 +123,31 @@ public class EDFScheduler {
         return true;
     }       
     // U = (executionTime_1/deadline_1) + (executionTime_2/deadline_2)...
+
+
+    private int calculateHyperperiod(List <Task> tasks){
+        List<BigInteger> deadlineList = new ArrayList<>();
+
+        for(int i = 0; i < tasks.size(); i++){
+            deadlineList.add(new BigInteger(String.valueOf(tasks.get(i).period)));
+        }
+        
+        BigInteger mmc = calculateMMC(deadlineList);
+
+        return mmc.intValue();
+    }
+
+    public BigInteger calculateMDC(BigInteger a, BigInteger b) {
+        return a.gcd(b);
+    }
+
+    // Função para calcular o MMC
+    public BigInteger calculateMMC(List<BigInteger> numeros) {
+        BigInteger mmc = numeros.get(0);
+        for (int i = 1; i < numeros.size(); i++) {
+            mmc = mmc.multiply(numeros.get(i)).divide(calculateMDC(mmc, numeros.get(i)));
+        }
+        return mmc;
+    }
+
 }
