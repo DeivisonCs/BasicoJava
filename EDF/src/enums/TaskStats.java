@@ -1,12 +1,12 @@
 package enums;
 
 public enum TaskStats {
-    CREATED ("Created"),
-    READY ("Ready"),
-    START_RUNNING ("Starts Running"),
-    RUNNING ("Running"),
-    PREEMPTED ("Pre-empted"),
-    COMPLETED ("Completed")
+    CREATED (ChangeColor.YELLOW.getColor() + "Created" + ChangeColor.DEFAULT.getColor()),
+    READY (ChangeColor.YELLOW.getColor() + "Ready" + ChangeColor.DEFAULT.getColor()),
+    START_RUNNING (ChangeColor.YELLOW.getColor() + "Starts Running" + ChangeColor.DEFAULT.getColor()),
+    RUNNING (ChangeColor.YELLOW.getColor() + "Running" + ChangeColor.DEFAULT.getColor()),
+    PREEMPTED (ChangeColor.RED.getColor() + "Pre-empted" + ChangeColor.DEFAULT.getColor()),
+    COMPLETED (ChangeColor.GREEN.getColor() + "Completed" + ChangeColor.DEFAULT.getColor())
     ;
 
     private String stats;

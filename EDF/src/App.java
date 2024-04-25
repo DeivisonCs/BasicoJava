@@ -13,9 +13,9 @@ public class App{
         // tasks.add(new Task("T2", 0, 9, 3));
         // tasks.add(new Task("T3", 1, 4, 2));
 
-        tasks.add(new Task("T4", 0, 5, 2));
-        tasks.add(new Task("T5", 0, 3, 1));
-        tasks.add(new Task("T6", 0, 4, 1));
+        // tasks.add(new Task("T4", 0, 5, 2));
+        // tasks.add(new Task("T5", 0, 3, 1));
+        // tasks.add(new Task("T6", 0, 4, 1));
 
         //tasks.add(new Task("T7", 0, 6, 2));
         //tasks.add(new Task("T8", 1, 8, 3));
@@ -25,9 +25,9 @@ public class App{
         // tasks.add(new Task("B", 2, 4, 2));
         // tasks.add(new Task("C", 4, 6, 5));
 
-        //  tasks.add(new Task("A", 0, 4, 1));
-        //  tasks.add(new Task("B", 0, 6, 2));
-        //  tasks.add(new Task("C", 2, 10, 3));
+         tasks.add(new Task("A", 0, 4, 1));
+         tasks.add(new Task("B", 0, 6, 2));
+         tasks.add(new Task("C", 2, 10, 3));
 
         // tasks.add(new Task("A", 0, 5, 1));
         // tasks.add(new Task("B", 0, 7, 2));

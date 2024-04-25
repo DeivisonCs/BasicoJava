@@ -2,6 +2,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import enums.TaskStats;
+import enums.ChangeColor;
 
 import exceptions.NotEscalableException;
 
@@ -13,6 +14,9 @@ public class EDFScheduler {
         // Calcula se o conjunto de tarefa é escalonável pelo EDF
         if(!isPossible(tasks))
             throw new NotEscalableException();
+
+        // Adiciona cor só pra visualização mais clara
+        setTaskColor(tasks);
 
         int hyperperiod = this.calculateHyperperiod(tasks);
         List<String> eventLog = new ArrayList<>();
@@ -27,7 +31,7 @@ public class EDFScheduler {
             
             // Caso não tenha nenhuma tarefa para executar
             if (readyTasks.isEmpty()) {
-                eventLog.add("\nTime: " + this.currentTime + ", Task: ");
+                eventLog.add("\nTime: " + this.currentTime + ", Task:");
                 this.currentTime++;
 
                 continue;
@@ -44,7 +48,7 @@ public class EDFScheduler {
             // Verifica se a tarefa finalizou
             if (isTaskCompleted(selectedTask)){
                 selectedTask.STATS = TaskStats.COMPLETED;
-                eventLog.add("\t Task: " + selectedTask.name + ", Stats: " + selectedTask.STATS.getStats());
+                eventLog.add("\t  Task: " + selectedTask.name + ", Stats: " + selectedTask.STATS.getStats());
                 selectedTask.periodInitialTime += selectedTask.period;
                 selectedTask.remainingTime = selectedTask.executionTime;
                 selectedTask.deadline += selectedTask.initialDeadline;
@@ -103,7 +107,7 @@ public class EDFScheduler {
 
         if(prevTask != null && selectedTask != prevTask && prevTask.STATS != TaskStats.COMPLETED){
             prevTask.STATS = TaskStats.PREEMPTED;
-            eventLog.add("\nTime: " + this.currentTime + ", Task: " + prevTask.name + ", Stats: " + prevTask.STATS.getStats() + "\n\t Task: " + selectedTask.name + ", Stats: " + selectedTask.STATS.getStats());
+            eventLog.add("\nTime: " + this.currentTime + ", Task: " + prevTask.name + ", Stats: " + prevTask.STATS.getStats() + "\n\t  Task: " + selectedTask.name + ", Stats: " + selectedTask.STATS.getStats());
         }else{   
             eventLog.add("\nTime: " + this.currentTime + ", Task: " + selectedTask.name + ", Stats: " + selectedTask.STATS.getStats());
         }
@@ -137,12 +141,12 @@ public class EDFScheduler {
         return mmc.intValue();
     }
 
-    public BigInteger calculateMDC(BigInteger a, BigInteger b) {
+    private BigInteger calculateMDC(BigInteger a, BigInteger b) {
         return a.gcd(b);
     }
 
     // Função para calcular o MMC
-    public BigInteger calculateMMC(List<BigInteger> numeros) {
+    private BigInteger calculateMMC(List<BigInteger> numeros) {
         BigInteger mmc = numeros.get(0);
         for (int i = 1; i < numeros.size(); i++) {
             mmc = mmc.multiply(numeros.get(i)).divide(calculateMDC(mmc, numeros.get(i)));
@@ -150,4 +154,11 @@ public class EDFScheduler {
         return mmc;
     }
 
+
+    // ---------------- So pra Design Mermo ;) ---------------
+    private void setTaskColor(List<Task> x){
+        x.get(0).name = ChangeColor.BLUE.getColor() + x.get(0).name + ChangeColor.DEFAULT.getColor();
+        x.get(1).name = ChangeColor.CYAN.getColor() + x.get(1).name + ChangeColor.DEFAULT.getColor();
+        x.get(2).name = ChangeColor.PURPLE.getColor() + x.get(2).name + ChangeColor.DEFAULT.getColor(); 
+    }
 }
