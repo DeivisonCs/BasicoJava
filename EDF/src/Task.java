@@ -14,7 +14,7 @@ public class Task {
     public Task(String name, int arrivalTime, int deadline, int executionTime) {
         this.name = name;
         this.arrivalTime = arrivalTime;
-        this.deadline = deadline;
+        this.deadline = arrivalTime + deadline;
         this.period = deadline;
         this.periodInitialTime = arrivalTime;
         this.initialDeadline = deadline;
