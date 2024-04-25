@@ -27,7 +27,7 @@ public class EDFScheduler {
             
             // Caso não tenha nenhuma tarefa para executar
             if (readyTasks.isEmpty()) {
-                eventLog.add("Time: " + this.currentTime + ", Task: ");
+                eventLog.add("\nTime: " + this.currentTime + ", Task: ");
                 this.currentTime++;
 
                 continue;
@@ -103,9 +103,9 @@ public class EDFScheduler {
 
         if(prevTask != null && selectedTask != prevTask && prevTask.STATS != TaskStats.COMPLETED){
             prevTask.STATS = TaskStats.PREEMPTED;
-            eventLog.add("Time: " + this.currentTime + ", Task: " + prevTask.name + ", Stats: " + prevTask.STATS.getStats() + "\n\t Task: " + selectedTask.name + ", Stats: " + selectedTask.STATS.getStats());
+            eventLog.add("\nTime: " + this.currentTime + ", Task: " + prevTask.name + ", Stats: " + prevTask.STATS.getStats() + "\n\t Task: " + selectedTask.name + ", Stats: " + selectedTask.STATS.getStats());
         }else{   
-            eventLog.add("Time: " + this.currentTime + ", Task: " + selectedTask.name + ", Stats: " + selectedTask.STATS.getStats());
+            eventLog.add("\nTime: " + this.currentTime + ", Task: " + selectedTask.name + ", Stats: " + selectedTask.STATS.getStats());
         }
     }
 
