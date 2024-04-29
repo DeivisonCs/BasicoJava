@@ -24,7 +24,7 @@ public class EDFScheduler {
         Task prevTask = null;
         this.currentTime = 0;
 
-        while (currentTime <= hyperperiod) {
+        while (currentTime < hyperperiod) {
 
             // Seleciona as tarefas com base no tempo de chegada 
             readyTasks = inQueue(tasks, readyTasks); 
