@@ -36,7 +36,7 @@ public class App {
 
         System.out.println(emp_4.getListaSuperiores());
         System.out.println(chef_2.getListaEmpregadosAssociados());
-        // System.out.println(CEO.getListaEmpregadosAssociados());
+        System.out.println(CEO.getListaEmpregadosAssociados());
         // System.out.println(chef_1.getListaSubordinadosDiretos());
     }
 }
