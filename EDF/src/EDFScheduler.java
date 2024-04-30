@@ -157,8 +157,8 @@ public class EDFScheduler {
 
     // ---------------- So pra Design Mermo ;) ---------------
     private void setTaskColor(List<Task> x){
-        x.get(0).name = ChangeColor.BLUE.getColor() + x.get(0).name + ChangeColor.DEFAULT.getColor();
+        x.get(0).name = ChangeColor.GREEN.getColor() + x.get(0).name + ChangeColor.DEFAULT.getColor();
         x.get(1).name = ChangeColor.CYAN.getColor() + x.get(1).name + ChangeColor.DEFAULT.getColor();
-        x.get(2).name = ChangeColor.PURPLE.getColor() + x.get(2).name + ChangeColor.DEFAULT.getColor(); 
+        x.get(2).name = ChangeColor.YELLOW.getColor() + x.get(2).name + ChangeColor.DEFAULT.getColor(); 
     }
 }

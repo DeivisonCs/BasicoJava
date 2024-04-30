@@ -33,9 +33,9 @@ public class App{
         // tasks.add(new Task("B", 0, 7, 2));
         // tasks.add(new Task("C", 4, 12, 3));
 
-         //tasks.add(new Task("A", 0, 6, 2));
-         //tasks.add(new Task("B", 0, 9, 3));
-         //tasks.add(new Task("C", 5, 15, 4));
+        //tasks.add(new Task("A", 0, 6, 2));
+        //tasks.add(new Task("B", 0, 9, 3));
+        //tasks.add(new Task("C", 5, 15, 4));
         
         List<String> schedule = scheduler.schedule(tasks);
         System.out.println("Schedule:");
