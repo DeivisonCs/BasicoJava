@@ -1,7 +1,11 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.xml.crypto.Data;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -71,5 +75,37 @@ public class App {
                 .average()
                 .getAsDouble()
         );
+
+
+        // 10. imprima a quantidade de elementos da lista, a soma de seus elementos, a média e o valor máximo
+        System.out.println(
+            numbers.stream()
+                .count()
+        );
+        System.out.println(
+            numbers.stream()
+                .reduce(0, Integer::sum)
+        );
+        System.out.println(
+            numbers.stream()
+                .mapToInt(Integer::intValue)
+                .average()
+                .getAsDouble()
+        );
+        System.out.println(
+            numbers.stream()
+                .mapToInt(Integer::intValue)
+                .max()
+                .getAsInt()
+        );
+
+
+        // 11. imprima a data de hoje, somando a quantidade de dias indicadas por cada elemento distinto da lista em ordem crescente
+        LocalDate todayDate = LocalDate.now();
+
+        numbers.stream()
+            .distinct()
+            .sorted()
+            .forEach(n -> System.out.println(todayDate.plusDays(n)));
     }
 }
