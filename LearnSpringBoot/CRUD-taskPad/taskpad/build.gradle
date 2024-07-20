@@ -23,6 +23,9 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'org.projectlombok:lombok:1.18.20' // Lombok
+    runtimeOnly 'org.springframework.boot:spring-boot-devtools:2.7.2' // Spring Devtools
+	 implementation 'org.springframework.boot:spring-boot-starter-validation' // Validations
 }
 
 tasks.named('test') {

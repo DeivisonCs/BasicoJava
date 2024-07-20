@@ -11,13 +11,22 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "task")
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Entity(name = "task")
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "cod_user")
     private Integer id;
 
@@ -32,51 +41,8 @@ public class Task {
     private String description;
 
     @Column(nullable = false)
-    private String completed;
+    private boolean completed;
 
     @Column(nullable = true)
     private Date deadline;
-
-    @Override
-    public String toString() {
-        return "Id: " + id +
-                "Title: " + title +
-                "Description: " + description +
-                "Completed: " + completed +
-                "Deadline: " + deadline;
-    }
-    
-
-// ------------- Getters and Setters -------------
-
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public String getCompleted() {
-        return completed;
-    }
-    public void setCompleted(String completed) {
-        this.completed = completed;
-    }
-    public Date getDeadline() {
-        return deadline;
-    }
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
-    }
 }
