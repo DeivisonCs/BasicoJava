@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.taskpad.taskpad.app.dto.TaskDTO;
 import com.taskpad.taskpad.app.models.Task;
-import com.taskpad.taskpad.app.repository.TaskRep;
+import com.taskpad.taskpad.app.services.TaskService;
 
 import jakarta.validation.Valid;
 
@@ -20,21 +22,21 @@ import jakarta.validation.Valid;
 @RequestMapping("/tasks")
 public class TaskController {
     @Autowired
-    private TaskRep taskDB;
+    private TaskService service;
 
     @GetMapping("{id}")
-    public Task getTask(@PathVariable("id") Integer id){
-        return taskDB.getReferenceById(id);
+    public Task getTask(@RequestParam @PathVariable("id") Integer id){
+        return service.getTaskById(id);
     }
 
     @GetMapping
     public List<Task> getAll(){
-        return taskDB.findAll();
+        return service.getAllTasks();
     }
 
     @PostMapping
-    public Task addTask(@Valid @RequestBody Task newTask){
-        return taskDB.save(newTask);
+    public void addTask(@Valid @RequestBody TaskDTO newTask){
+        service.addTask(newTask);
     }
 
     // @PutMapping
@@ -44,6 +46,6 @@ public class TaskController {
 
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable("id") Integer id){
-        taskDB.deleteById(id);
+        service.deleteTask(id);
     }
 }

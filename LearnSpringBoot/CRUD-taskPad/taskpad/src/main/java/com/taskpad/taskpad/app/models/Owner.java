@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,8 +21,8 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @ToString
-
 @Entity(name = "owner")
 public class Owner {
     @Id
@@ -35,10 +36,9 @@ public class Owner {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "birth_date")
     private Date birthDate;
 
     @OneToMany(mappedBy = "owner")
     private List<Task> tasks;
-
 }

@@ -8,7 +8,8 @@ public class App implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        throw new UnsupportedOperationException("Unimplemented method 'run'");
+
     }
+
     
 }

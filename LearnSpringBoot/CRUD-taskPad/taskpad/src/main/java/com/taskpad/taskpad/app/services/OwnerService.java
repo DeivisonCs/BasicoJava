@@ -7,29 +7,35 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.taskpad.taskpad.app.dto.OwnerDTO;
+import com.taskpad.taskpad.app.mapper.OwnerMapper;
+import com.taskpad.taskpad.app.models.Owner;
 import com.taskpad.taskpad.app.repository.OwnerRep;
 
 @Service
-public class OwnerServices {
+public class OwnerService {
     @Autowired
     private OwnerRep ownerDB;
 
     @Transactional(readOnly = true)
-    public OwnerDTO getOwnerById(Integer id){
-        
+    public Owner getOwnerById(Integer id){   
         return ownerDB.getReferenceById(id);
     }
     
     @Transactional(readOnly = true)
-    public List<OwnerDTO> getAllOwners(){
+    public List<Owner> getAllOwners(){
         return ownerDB.findAll();
     }
     
     @Transactional
     public void addOwner(OwnerDTO newOwner){
-        ownerDB.save(newOwner);
+        ownerDB.save(OwnerMapper.OwnerDTOtoEntity(newOwner));
     }
     
+    @Transactional
+    public void deleteOwner(Integer id){
+        ownerDB.deleteById(id);
+    }
+
     // @Transactional
     // public void updateOwner(OwnerDTO newOwner){
     //     ownerDB.save(newOwner);

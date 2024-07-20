@@ -2,6 +2,8 @@ package com.taskpad.taskpad.app.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -30,9 +32,10 @@ public class TaskDTO {
     private String description;
 
     @NotNull
-    private boolean completed;
+    private Boolean completed;
 
     @NotNull
     @FutureOrPresent
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date deadline;
 }
