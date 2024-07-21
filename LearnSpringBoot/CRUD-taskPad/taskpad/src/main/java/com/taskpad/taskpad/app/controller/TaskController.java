@@ -3,13 +3,13 @@ package com.taskpad.taskpad.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.taskpad.taskpad.app.dto.TaskDTO;
@@ -25,18 +25,18 @@ public class TaskController {
     private TaskService service;
 
     @GetMapping("{id}")
-    public Task getTask(@RequestParam @PathVariable("id") Integer id){
-        return service.getTaskById(id);
+    public ResponseEntity<Task> getTask(@PathVariable("id") Integer id){
+        return ResponseEntity.ok(service.getTaskById(id));
     }
 
     @GetMapping
-    public List<Task> getAll(){
-        return service.getAllTasks();
+    public ResponseEntity<List<Task>> getAll(){
+        return ResponseEntity.ok(service.getAllTasks());
     }
 
     @PostMapping
-    public void addTask(@Valid @RequestBody TaskDTO newTask){
-        service.addTask(newTask);
+    public ResponseEntity<Task> addTask(@Valid @RequestBody TaskDTO newTask){
+        return ResponseEntity.ok(service.addTask(newTask));
     }
 
     // @PutMapping
@@ -45,7 +45,8 @@ public class TaskController {
     // }
 
     @DeleteMapping("/{id}")
-    public void deleteTask(@PathVariable("id") Integer id){
+    public ResponseEntity<String> deleteTask(@PathVariable("id") Integer id){
         service.deleteTask(id);
+        return ResponseEntity.ok("Task Deleted!");
     }
 }

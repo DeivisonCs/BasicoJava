@@ -1,6 +1,7 @@
 package com.taskpad.taskpad.app.services;
-
 import java.util.List;
+
+import com.taskpad.taskpad.app.exceptions.NotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class TaskService {
 
     @Transactional(readOnly = true)
     public Task getTaskById(Integer id){
-        return taskDB.getReferenceById(id); 
+        return taskDB.findById(id).orElseThrow(NotFoundException::new); 
     }
     
     @Transactional(readOnly = true)
@@ -27,12 +28,14 @@ public class TaskService {
     }
 
     @Transactional
-    public void addTask(TaskDTO newTask){
-        taskDB.save(TaskMapper.TaskDTOtoEntity(newTask));
+    public Task addTask(TaskDTO newTask){
+        return taskDB.save(TaskMapper.TaskDTOtoEntity(newTask));
     }
     
     @Transactional
     public void deleteTask(Integer id){
+        if(!taskDB.existsById(id)) throw new NotFoundException("Task Not Found!");
+
         taskDB.deleteById(id);
     }
 }
