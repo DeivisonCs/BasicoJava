@@ -1,16 +1,16 @@
 package com.taskpad.taskpad.app.mapper;
 
-import com.taskpad.taskpad.app.dto.OwnerDTO;
+import com.taskpad.taskpad.app.dto.owner.OwnerAddDTO;
 import com.taskpad.taskpad.app.models.Owner;
 
 
 public class OwnerMapper {
-    public static OwnerDTO OwnerToDTO(Owner owner){
+    public static OwnerAddDTO OwnerToDTO(Owner owner){
 
         if(owner == null) return null;
         
 
-        OwnerDTO ownerDTO = new OwnerDTO(
+        OwnerAddDTO ownerDTO = new OwnerAddDTO(
             owner.getName(), 
             owner.getEmail(), 
             owner.getBirthDate()
@@ -19,7 +19,7 @@ public class OwnerMapper {
         return ownerDTO;
     }
 
-    public static Owner OwnerDTOtoEntity(OwnerDTO ownerDTO){
+    public static Owner OwnerDTOtoEntity(OwnerAddDTO ownerDTO){
 
         if(ownerDTO == null) return null;
 

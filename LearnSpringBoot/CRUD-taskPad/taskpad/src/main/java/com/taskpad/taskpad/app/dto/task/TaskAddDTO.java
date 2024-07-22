@@ -1,13 +1,12 @@
-package com.taskpad.taskpad.app.dto;
+package com.taskpad.taskpad.app.dto.task;
 
 import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,21 +16,26 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
 @AllArgsConstructor
-public class OwnerDTO {
-    @NotEmpty
-    @Size(max = 30)
-    private String name;
-    
-    @NotEmpty
-    @Email
-    @Size(max = 30)
-    private String email;
-    
+@NoArgsConstructor
+@ToString
+public class TaskAddDTO {
     @NotNull
-    @Past
+    private Integer owner_id;
+
+    @NotEmpty
+    @Size(max = 30)
+    private String title;
+    
+    @NotEmpty
+    @Size(max = 300)
+    private String description;
+
+    @NotNull
+    private Boolean completed;
+
+    @NotNull
+    @FutureOrPresent
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date birthDate;
+    private Date deadline;
 }

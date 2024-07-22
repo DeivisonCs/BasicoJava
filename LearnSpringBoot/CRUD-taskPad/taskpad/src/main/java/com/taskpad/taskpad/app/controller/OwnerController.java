@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.taskpad.taskpad.app.dto.OwnerDTO;
+import com.taskpad.taskpad.app.dto.owner.OwnerAddDTO;
+import com.taskpad.taskpad.app.dto.owner.OwnerUpdateDTO;
 import com.taskpad.taskpad.app.exceptions.MissingArgsException;
 import com.taskpad.taskpad.app.models.Owner;
 import com.taskpad.taskpad.app.services.OwnerService;
@@ -37,7 +39,7 @@ public class OwnerController {
     }
 
     @PostMapping
-    public ResponseEntity<Owner> addOwner(@Valid @RequestBody OwnerDTO newOwner, BindingResult bindingResult){
+    public ResponseEntity<Owner> addOwner(@Valid @RequestBody OwnerAddDTO newOwner, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             throw new MissingArgsException();
         }
@@ -49,5 +51,13 @@ public class OwnerController {
     public ResponseEntity<String> deleteOwner(@PathVariable("id") Integer id){
         service.deleteOwner(id);
         return ResponseEntity.ok("User Deleted!");
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Owner> updateOwner (@PathVariable("id") Integer id, @Valid @RequestBody OwnerUpdateDTO newDatas, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) 
+            throw new MissingArgsException();
+
+        return ResponseEntity.ok(service.updateOwner(newDatas, id));
     }
 }

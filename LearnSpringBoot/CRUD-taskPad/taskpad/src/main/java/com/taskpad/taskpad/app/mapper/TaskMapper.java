@@ -1,13 +1,13 @@
 package com.taskpad.taskpad.app.mapper;
 
-import com.taskpad.taskpad.app.dto.TaskDTO;
+import com.taskpad.taskpad.app.dto.task.TaskAddDTO;
 import com.taskpad.taskpad.app.models.Task;
 
 public class TaskMapper {
-    public static TaskDTO TaskToDTO (Task task){
+    public static TaskAddDTO TaskToDTO (Task task){
         if(task == null) return null;
 
-        TaskDTO taskDTO = new TaskDTO(
+        TaskAddDTO taskDTO = new TaskAddDTO(
             task.getOwner().getId(), 
             task.getTitle(),
             task.getDescription(), 
@@ -18,7 +18,7 @@ public class TaskMapper {
         return taskDTO;
     }    
 
-    public static Task TaskDTOtoEntity(TaskDTO taskDTO){
+    public static Task TaskDTOtoEntity(TaskAddDTO taskDTO){
         if(taskDTO == null) return null;
 
         return Task.builder()
