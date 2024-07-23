@@ -1,6 +1,6 @@
 package com.taskpad.taskpad.app.dto.owner;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -27,5 +27,5 @@ public class OwnerUpdateDTO {
 
     @Past
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date birthDate;
+    private LocalDate birthDate;
 }

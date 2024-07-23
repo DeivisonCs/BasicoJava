@@ -3,6 +3,7 @@ package com.taskpad.taskpad.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,7 +43,7 @@ public class TaskController {
     public ResponseEntity<Task> addTask(@Valid @RequestBody TaskAddDTO newTask, BindingResult bindingResult){
         if(bindingResult.hasErrors()) throw new MissingArgsException();
 
-        return ResponseEntity.ok(service.addTask(newTask));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.addTask(newTask));
     }
 
     @PutMapping("/{id}")
@@ -53,6 +54,6 @@ public class TaskController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteTask(@PathVariable("id") Integer id){
         service.deleteTask(id);
-        return ResponseEntity.ok("Task Deleted!");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Task Deleted!");
     }
 }

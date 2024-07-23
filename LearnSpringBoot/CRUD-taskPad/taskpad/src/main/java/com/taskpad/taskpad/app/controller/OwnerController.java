@@ -3,6 +3,7 @@ package com.taskpad.taskpad.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,13 +45,13 @@ public class OwnerController {
             throw new MissingArgsException();
         }
 
-        return ResponseEntity.ok(service.addOwner(newOwner));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.addOwner(newOwner));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteOwner(@PathVariable("id") Integer id){
         service.deleteOwner(id);
-        return ResponseEntity.ok("User Deleted!");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("User Deleted!");
     }
 
     @PutMapping("/{id}")

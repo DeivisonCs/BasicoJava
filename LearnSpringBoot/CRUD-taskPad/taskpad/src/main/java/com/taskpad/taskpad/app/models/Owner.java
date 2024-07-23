@@ -1,6 +1,6 @@
 package com.taskpad.taskpad.app.models;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -37,7 +37,7 @@ public class Owner {
     private String email;
 
     @Column(nullable = false, name = "birth_date")
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @OneToMany(mappedBy = "owner")
     private List<Task> tasks;
