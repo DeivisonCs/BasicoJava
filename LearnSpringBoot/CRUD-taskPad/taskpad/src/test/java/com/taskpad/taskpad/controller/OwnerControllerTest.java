@@ -56,6 +56,8 @@ public class OwnerControllerTest {
             .andExpect(jsonPath("$.birthDate").value("2020-02-20"));
     }
 
+    // Tentar adicionar beforeAll e afterAll
+    // Delete lógico?
     @Test
     public void testDeleteOwner() throws Exception{
         // String onwerJson = createOwnerJSON("test delete", "deletetest@gmail.com", "1990-09-12");
