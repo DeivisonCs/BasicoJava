@@ -1,0 +1,1048 @@
+{
+	"info": {
+		"_postman_id": "dfa52c10-e135-4f69-a28b-b439de43d6f9",
+		"name": "PHumano",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27707919",
+		"_collection_link": "https://projeto-trilhas-gsort.postman.co/workspace/ADS-Labs~5aab5836-dd60-4bac-9ee2-1d0a164f9f93/collection/27707919-dfa52c10-e135-4f69-a28b-b439de43d6f9?action=share&source=collection_link&creator=27707919"
+	},
+	"item": [
+		{
+			"name": "Autenticação",
+			"item": [
+				{
+					"name": "Logins",
+					"item": [
+						{
+							"name": "Login Admin Gsort",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseBody = pm.response.json();\r",
+											"console.log(responseBody);\r",
+											"pm.collectionVariables.set(\"token\", responseBody.token);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"gsort\",\r\n    \"password\": \"gunsorted\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login Acesso Fesf",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"fesf2\",\r\n    \"password\": \"gunsorted\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login Acesso Enfermeira",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseBody = pm.response.json();\r",
+											"console.log(responseBody);\r",
+											"pm.collectionVariables.set(\"token\", responseBody.token);\r",
+											"pm.collectionVariables.set(\"enfermeiraId\", responseBody.myUuid);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"Enfermeira\",\r\n    \"password\": \"EnfermagemPorAmor\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login pezao",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseBody = pm.response.json();\r",
+											"console.log(responseBody);\r",
+											"pm.collectionVariables.set(\"token\", responseBody.token);\r",
+											"pm.collectionVariables.set(\"votanteId\", responseBody.myUuid);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"Lavagem\",\r\n    \"password\": \"voceMeDaAcademias\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login Cabral",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseBody = pm.response.json();\r",
+											"console.log(responseBody);\r",
+											"pm.collectionVariables.set(\"token\", responseBody.token);\r",
+											"pm.collectionVariables.set(\"votanteId\", responseBody.myUuid);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"Influencia\",\r\n    \"password\": \"Trafico\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login Gedel",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseBody = pm.response.json();\r",
+											"console.log(responseBody);\r",
+											"pm.collectionVariables.set(\"token\", responseBody.token);\r",
+											"pm.collectionVariables.set(\"votanteId\", responseBody.myUuid);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"apartamento\",\r\n    \"password\": \"graca\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cadastros",
+					"item": [
+						{
+							"name": "Cadastro Fesf",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credenciais\": {\r\n        \"email\": \"fesf2\",\r\n        \"password\": \"gunsorted\"\r\n    },\r\n    \"dadosCadastrais\": {\r\n        \"cpf\": \"0671\",\r\n        \"nome\": \"Matheus\",\r\n        \"telefone\": \"71\"\r\n    },\r\n    \"permissao\":\"Fesf\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/cadastrar",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"cadastrar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastro Municipio",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credenciais\": {\r\n        \"email\": \"Secrataria\",\r\n        \"password\": \"gunsorted\"\r\n    },\r\n    \"perfil\": {\r\n        \"cpf\": \"0671\",\r\n        \"nome\": \"Matheus\",\r\n        \"telefone\": \"71\",\r\n        \"autoridade\": \"SecratariaMunicipal\",\r\n        \"codigo\":2927408\r\n    },\r\n    \"permissao\":\"Usuario\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/cadastrar",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"cadastrar"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Usuários",
+			"item": [
+				{
+					"name": "Listar Usuários",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastro Usuário",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"credenciais\": {\r\n        \"email\": \"user2\",\r\n        \"password\": \"gunsorted\"\r\n    },\r\n    \"dadosCadastrais\": {\r\n        \"cpf\": \"0671\",\r\n        \"nome\": \"Mastheus\",\r\n        \"telefone\": \"71\"\r\n    },\r\n    \"permissao\":\"Enfermeira\",\r\n    \"codigoDoMunicipio\": 2927408\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/cadastrar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Dados Usuário",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"TesTe\",\r\n    \"email\": \"a@gmail.com\",\r\n    \"telefone\": \"71\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/atualizar/:uuid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"atualizar",
+								":uuid"
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": "e433badb-94aa-40ef-ba66-2091bf7013f3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desativar Usuário",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJQSHVtYW5vIiwic3ViIjoiZ3NvcnQiLCJleHAiOjE3MjEyNTIzNjZ9.ax1T7zRHQx2UQrNBdAIoUxAjDjUp3zzCzAEDW7as6dc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/:uuid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								":uuid"
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Programa",
+			"item": [
+				{
+					"name": "Cadastro Programa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJQSHVtYW5vIiwic3ViIjoiZ3NvcnQiLCJleHAiOjE3MjE0Mjk3NTh9.Y4NQ6JjH7rqduwpWd91Fssxj5KZNuoXWSvqKv7r8c5s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Programa de Salvador\",\r\n    \"codigoDoMunicipio\": 2927408\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/programas/cadastrar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"programas",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Integrante",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJQSHVtYW5vIiwic3ViIjoiZ3NvcnQiLCJleHAiOjE3MjE0Mjc4MjZ9.D7Ke7g9HM_5SXZsVEyev9xJhRTRkx14fXBj-HIIG3TA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/programas/:id/add/:uuid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"programas",
+								":id",
+								"add",
+								":uuid"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "uuid",
+									"value": "15800eeb-5712-4d42-ae6b-aca1d97f8764"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gpq",
+			"item": [
+				{
+					"name": "Voto",
+					"item": [
+						{
+							"name": "Aprovar",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"votanteId\": \"{{votanteId}}\",\r\n    \"voto\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/gpq/aprovar/{{numeroDoDocumento}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"gpq",
+										"aprovar",
+										"{{numeroDoDocumento}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reprovar",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"votanteId\": {{votanteId}},\r\n    \"voto\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/documentos/Aprovar/{{numeroDoDocumento}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"documentos",
+										"Aprovar",
+										"{{numeroDoDocumento}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Listar GPQs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/gpq",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"gpq"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar GPQ detalhado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/gpq/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"gpq",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criacao de GPQ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseBody = pm.response.json();\r",
+									"console.log(responseBody);\r",
+									"pm.collectionVariables.set(\"numeroDoDocumento\", responseBody.numeroDoDocumento);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"enfermeiraId\":\"{{enfermeiraId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/gpq",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"gpq"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enviar respostas de GPQ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseBody = pm.response.json();\r",
+									"console.log(responseBody);\r",
+									"pm.collectionVariables.set(\"numeroDoDocumento\", responseBody.numeroDoDocumento);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"respostas\": [\r\n    {\r\n        \"perguntaId\": 1,\r\n        \"quantidade\": 10\r\n    },\r\n    {\r\n        \"perguntaId\": 2,\r\n        \"quantidade\": 20\r\n    }\r\n   ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/gpq/respostas/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"gpq",
+								"respostas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Enfermeiras",
+			"item": [
+				{
+					"name": "Cadastrar Enfermeira",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": {\r\n        \"credenciais\": {\r\n            \"email\": \"user1\",\r\n            \"password\": \"gunsorted\"\r\n        },\r\n        \"dadosCadastrais\": {\r\n            \"cpf\": \"0671\",\r\n            \"nome\": \"TesTe\",\r\n            \"telefone\": \"71\"\r\n        },\r\n        \"permissao\":\"Enfermeira\",\r\n        \"codigoDoMunicipio\": 2927408\r\n    },\r\n    \"coren\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/enfermagem",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"enfermagem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desativar Enfermeira",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/enfermagem/:coren",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"enfermagem",
+								":coren"
+							],
+							"variable": [
+								{
+									"key": "coren",
+									"value": "1234"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PerguntasGpq",
+			"item": [
+				{
+					"name": "listar perguntas",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "criar pergunta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"acaoId\": null,\r\n    \"descricao\": \"nova descricao\",\r\n    \"temAnexo\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/gpq/perguntas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"gpq",
+								"perguntas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar pergunta",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "votanteToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "enfermeiraId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "votanteId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "numeroDoDocumento",
+			"value": ""
+		},
+		{
+			"value": "",
+			"disabled": true
+		}
+	]
+}

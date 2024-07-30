@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app: 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/partohumanizado
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      API_SECURITY_TOKEN_SECRET: segredo
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16.3
+    environment:
+      POSTGRES_DB: partohumanizado
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+
