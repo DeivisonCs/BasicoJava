@@ -73,3 +73,70 @@ VALUES
 	(8,2,2,3),
 	(9,3,2,4),
 	(10,4,2,5);
+
+-- a) Selecione os APOSTADORES e suas respectivas CIDADES por ORDEM DESCRESCENTE de NOME_APOSTADOR.
+
+SELECT ap.*, city.descricao
+FROM apostador AS ap
+	INNER JOIN cidade AS city
+		ON(ap.cod_cidade = city.cod_cidade)
+ORDER BY ap.nome_apostador DESC;
+
+
+-- b) Selecione os NOMES dos APOSTADORES e a quantidade de APOSTAS de cada um deles, por ORDEM CRESCENTE da QUANTIDADE DE APOSTAS.
+
+SELECT ap.nome_apostador, COUNT(bet.cod_apostador)
+FROM apostador AS ap
+	LEFT JOIN aposta AS bet
+		ON(ap.cod_apostador =  bet.cod_apostador)
+GROUP BY ap.cod_apostador
+ORDER BY COUNT(bet.cod_apostador);
+
+-- c) Selecione os NUMEROS SORTEADOS que saíram mais de uma vez em SORTEIO.
+
+SELECT num.cod_numero, COUNT(num.cod_numero)
+FROM numero AS num
+	RIGHT JOIN aposta AS bet
+		ON(num.cod_numero = bet.numero_apostado)
+GROUP BY num.cod_numero
+HAVING COUNT(num.cod_numero) > 1;
+
+-- d) Selecione as CIDADES que tenham a letra S em sua DESCRICAO e que tiveram APOSTADORES GANHADORES dos SORTEIOS.
+
+SELECT city.descricao
+FROM cidade AS city
+	INNER JOIN apostador AS ap
+		ON(city.cod_cidade = ap.cod_cidade AND city.descricao LIKE '%S%')
+	LEFT JOIN aposta AS bet
+		ON(ap.cod_apostador = bet.cod_apostador) 
+	RIGHT JOIN sorteio AS so
+		ON(bet.numero_apostado = so.numero_sorteado)
+GROUP BY city.descricao;
+
+-- e) Selecione os NUMEROS que NUNCA PARTICIPARAM de algum
+-- SORTEIO.
+-- f) Selecione a QUANTIDADE de APOSTAS por CIDADE, por ORDEM
+-- CRESCENTE de APOSTAS, colocando ZERO nas CIDADES que não
+-- possuem APOSTA.
+
+-- g) Atualize para ‘CIDADE_RETADA’ a DESCRICAO da CIDADE que
+-- possuir mais de 4 APOSTAS REALIZADAS.
+
+
+UPDATE cidade city SET descricao='CIDADE _RETADA' 
+WHERE city.cod_cidade in
+	(SELECT city.cod_cidade
+	FROM cidade AS city
+		INNER JOIN apostador AS ap
+			ON(city.cod_cidade = ap.cod_cidade)
+		LEFT JOIN aposta AS bet
+			ON(ap.cod_apostador = bet.cod_apostador)
+	GROUP BY city.descricao,  city.cod_cidade
+	HAVING COUNT(bet.cod_aposta) > 4);
+
+
+
+-- h) Apague os APOSTADORES cujos NUMEROS APOSTADOS tenham uma
+-- SOMA com resultado MAIOR QUE 5. Observação: o comando dará erro de
+-- violação de chave estrangeira
+
