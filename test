@@ -1,0 +1,32 @@
+CREATE TABLE cidade ( cod_cidade int NOT NULL,
+					 descricao VARCHAR(30) NOT NULL,
+					 CONSTRAINT pk_cidade PRIMARY KEY (cod_cidade));
+					 
+					 
+CREATE TABLE apostador ( cod_apostador int NOT NULL,
+					 cod_apostador VARCHAR(30),
+					 cod_cidade int NOT NULL,
+					 CONSTRAINTS pk_apostador PRIMARY KEY (cod_apostador),
+					 CONSTRAINT fk_cidade_apostador FOREIGN KEY (cod_cidade) REFERENCES cidade (cod_cidade));
+					 
+
+CREATE TABLE numero ( cod_numero int NOT NULL,
+					 CONSTRAINTS pk_numero PRIMARY KEY (cod_numero);
+					
+					 
+CREATE TABLE sorteio ( cod_sorteio int NOT NULL,
+					  data_sorteio DATE NOT NULL,
+					  numero_sorteado int NOT NULL,
+					 CONSTRAINTS pk_sorteio PRIMARY KEY (cod_sorteio)
+					 CONSTRAINTS fk_sorteio_numero FOREIGN KEY (numero_sorteado) REFERENCES numero (cod_numero);
+			 
+
+CREATE TABLE aposta ( cod_aposta int NOT NULL,
+					 cod_apostador int NOT NULL,
+					 numero_apostado int NOT NULL,
+					 cod_sorteio int NOT NULL,
+					 CONSTRAINTS pk_aposta PRIMARY KEY (cod_aposta),
+					 CONSTRAINT fk_aposta_apostador FOREIGN KEY (cod_apostador) REFERENCES apostador (cod_apostador),
+					CONSTRAINT fk_aposta_numero FOREIGN KEY (numero_apostado) REFERENCES numero (cod_numero),
+					 CONSTRAINT fk_aposta_sorteio FOREIGN KEY (cod_sorteio) REFERENCES sorteio (cod_sorteio)
+					 );
